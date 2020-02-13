@@ -1,0 +1,14 @@
+<h2>New Author</h2>
+
+<% if (locals.errorMessage != null) { %>
+    <%= errorMessage %>
+  <% } %>
+
+<form action="/customers" method="POST">
+
+    <label>Farmer Name</label>
+    <input type="text" name="name" value="<%= customer.name %>">
+
+  <a href="/customers">Cancel</a>
+  <button type="submit">Create</button>
+</form>
