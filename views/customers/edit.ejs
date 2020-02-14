@@ -1,0 +1,14 @@
+<h2>Edit Customer</h2>
+
+<% if (locals.errorMessage != null) { %>
+    <%= errorMessage %>
+  <% } %>
+
+<form action="/customers/<%= customer.id %>?_method=PUT" method="POST">
+
+    <label>Farmer Name</label>
+    <input type="text" name="name" value="<%= customer.name %>">
+
+  <a href="/customers/<%= customer.id %>">Cancel</a>
+  <button type="submit">Update</button>
+</form>

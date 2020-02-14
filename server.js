@@ -7,7 +7,7 @@ const mongoose=require('mongoose');
 const flash=require('connect-flash');
 const session=require('express-session');
 const passport = require('passport');
-
+const methodOverRide=require('method-override')
 
 //Passport config
 require('./config/passport')(passport);
@@ -36,7 +36,7 @@ app.use(expresslayouts)
 app.use(express.static('public'))
 //body parser
 app.use(bodyParser.urlencoded({limit: '10mb',extended: false}))
-
+app.use(methodOverRide('_method'))
 
 
 //express session
@@ -68,9 +68,8 @@ next();
 //routes
 const indexRouter=require('./routes/index')
 const adminRouter=require('./routes/admins')
-const productsRouter=require('./routes/products')
 const customerRouter=require('./routes/customers')
-
+const productRouter=require('./routes/products')
 
 
 
@@ -81,8 +80,8 @@ app.use('/', indexRouter)
 
 //dashboard ma dekhako
 app.use('/admins', adminRouter)
-app.use('/products', productsRouter)
 app.use('/customers', customerRouter)
+app.use('/products', productRouter)
 
 
 

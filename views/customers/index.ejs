@@ -8,4 +8,9 @@
 <br>
 <% customer.forEach(customer => { %>
   <div><%= customer.name %></div>
-<% }) %>
+  <a href="/customers/<%= customer.id %>">View</a>
+  <a href="/customers/<%= customer.id %>/edit">Edit</a>
+  <form method="POST" action="/customers/<%= customer.id %>?_method=DELETE">
+    <button type="submit">Delete</button>
+  </form>
+  <% }) %>

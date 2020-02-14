@@ -1,4 +1,6 @@
 const mongoose=require('mongoose')
+const path=require('path')
+const coverImageBasePath='uploads/productCovers'
 
 const productSchema=new mongoose.Schema({
 
@@ -6,11 +8,8 @@ productname:{
     type: String,
     required: true
 },
-price:{
-    type: Number,
-    required: true
-},
-Quantity:{
+
+quantity:{
     type: Number,
     required: true
 },
@@ -29,7 +28,26 @@ coverImageName:
 {
     type: String,
     required: true
+},
+place:{
+    type: String,
+    required: true
+},
+customer:{
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref:'Cutsomer'
+
 }
 
 })
+
+productSchema.virtual('coverImagePath').get(function(){
+    if(this.coverImageName != null)
+    {
+return path.join('/', coverImageBasePath, this.coverImageName)
+    }
+})
+
 module.exports=mongoose.model('Product', productSchema)
+module.exports.coverImageBasePath=coverImageBasePath

@@ -1,1 +1,22 @@
-all authors
+  
+<h2>Search Products</h2>
+<form action="/products" method="GET">
+  <div>
+    <label>Product Name</label>
+    <input type="text" name="productname" value="<%= searchOptions.productname %>">
+  </div>
+  <div>
+    <label>Published After</label>
+    <input type="date" name="publishedAfter" value="<%= searchOptions.publishedAfter %>">
+  </div>
+  <div>
+    <label>Published Before</label>
+    <input type="date" name="publishedBefore" value="<%= searchOptions.publishedBefore %>">
+  </div>
+  <button type="submit">Search</button>
+</form>
+<div>
+  <% product.forEach(product => { %>
+    <img height="150" width="100" src="<%= product.coverImagePath %>">
+  <% }) %>
+</div>

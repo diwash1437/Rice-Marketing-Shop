@@ -1,0 +1,46 @@
+<h2>New Product</h2>
+
+
+
+<form action="/products" method="POST" enctype="multipart/form-data">
+
+    <label>Product Name</label>
+    <input type="text" name="productname" value="<%= product.productname %>">
+
+    <div>
+      <label>Farmer Name</label>
+      <select name="customer">
+      <% customer.forEach(customer => { %>
+        <% if (customer.id === product.customer) { %>
+          <option selected label="<%= customer.name %>" value="<%= customer.id %>">
+        <% } else { %>
+          <option label="<%= customer.name %>" value="<%= customer.id %>">
+        <% } %>
+      <% }) %>
+      </select>
+    </div>
+    <div>
+      <label>Quantity</label>
+      <input type="number" name="quantity" min="1" value="<%= product.quantity %>">
+    </div>
+    </div>
+
+
+
+    <div>
+      <label>Publish Date</label>
+      <input type="date" name="publishDate"
+            value="<%= product.publishDate == null ? '' : product.publishDate.toISOString().split('T')[0] %>">
+    </div>
+
+    <div>
+      <label>Farmer Profile</label>
+      <input type="file" name="cover">
+    </div>
+ 
+
+
+
+  <a href="/products">Cancel</a>
+  <button type="submit">Create</button>
+</form>
