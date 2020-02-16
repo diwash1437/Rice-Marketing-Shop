@@ -67,9 +67,10 @@ next();
 
 //routes
 const indexRouter=require('./routes/index')
-const adminRouter=require('./routes/admins')
+const userRouter=require('./routes/users')
 const customerRouter=require('./routes/customers')
 const productRouter=require('./routes/products')
+
 
 
 
@@ -79,9 +80,11 @@ app.use('/', indexRouter)
 
 
 //dashboard ma dekhako
-app.use('/admins', adminRouter)
+app.use('/users', userRouter)
 app.use('/customers', customerRouter)
+
 app.use('/products', productRouter)
+
 
 
 
@@ -94,3 +97,4 @@ app.listen(process.env.PORT || 2800)
 /////authtentication for 1:20 after u need to logged in
 //layout.ejs 
 //<!--    -->
+/////7mins

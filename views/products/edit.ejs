@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   
+    <link rel="stylesheet" href="stylesheets/main.css">
+</head>
+<body>
+
+
+
+
+<h2 class="page-header">Edit Products</h2>
+<form action="/products/<%= product.id %>?_method=PUT" method="POST">
+
+
+    <div>
+        <label>Title</label>
+        <input type="text" name="title" value="<%= product.title %>">
+      </div>
+      <div>
+        <label>Author</label>
+        <select name="customer">
+        <% customer.forEach(customer => { %>
+          <% if (customer.id === product.customer) { %>
+            <option selected label="<%= customer.name %>" value="<%= customer.id %>">
+          <% } else { %>
+            <option label="<%= customer.name %>" value="<%= customer.id %>">
+          <% } %>
+        <% }) %>
+        </select>
+      </div>
+      <div>
+        <label>Publish Date</label>
+        <input type="date" name="publishDate"
+              value="<%= product.publishDate == null ? '' : product.publishDate.toISOString().split('T')[0] %>">
+      </div>
+      <div>
+        <label>Contact Number</label>
+        <input type="number" name="pageCount" min="1" value="<%= product.pageCount %>">
+      </div>
+      </div>
+      <div>
+        <label>Cover</label>
+        <input type="file" name="cover">
+      </div>
+      <div>
+        <label>Description</label>
+        <textarea name="description"><%= product.description %></textarea>
+      </div>
+      
+      
+
+
+  <a href="/products">Cancel</a>
+  <button type="submit">Update</button>
+</form>
+
+
+
+
+
+
+</body>
+</html>

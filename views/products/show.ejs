@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   
+    <link rel="stylesheet" href="stylesheets/main.css">
+</head>
+<body>
+
+
+
+
+<h2 class="page-header"> <%= product.title %></h2>
+
+<img width="100" height="150" src="<%= product.coverImagePath %>">
+<div>customer: <%= product.customer.name %></div>
+<div>Publish Date: <%= product.publishDate.toDateString() %></div>
+<div>Page Count: <%= product.pageCount %></div>
+<div>Description: <%= product.description %></div>
+
+<a href="/products/<%= product.id %>/edit">Edit</a>
+<form method="POST" action="/products/<%= product.id %>?_method=DELETE">
+    <button type="submit">Delete</button>
+  </form>
+<a href="/customers/<%= product.customer.id %>/edit">View Customer</a>
+
+
+
+
+
+</body>
+</html>

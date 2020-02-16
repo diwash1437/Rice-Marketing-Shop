@@ -5,7 +5,7 @@ const passport= require('passport');
 
 
 //user model
-const User=require('../models/Admin')
+const User=require('../models/User')
 
 
 
@@ -20,7 +20,7 @@ res.render('login')
 router.post('/login',(req,res,next)=>{
     passport.authenticate('local', {
         successRedirect: '/dashboard',
-        failureRedirect: '/admins/login',
+        failureRedirect: '/users/login',
         failureFlash: true
       })(req, res, next);
     });
@@ -30,7 +30,7 @@ router.post('/login',(req,res,next)=>{
 router.get('/logout', (req, res) => {
     req.logout();
     req.flash('success_msg', 'You are logged out');
-    res.redirect('/admins/login');
+    res.redirect('/users/login');
   });
 
 
@@ -119,7 +119,7 @@ newUser.password=hash;
 newUser.save()
 .then(user =>{
     req.flash('success_msg','you are now registered');
-    res.redirect('/admins/login');
+    res.redirect('/users/login');
 })
 .catch(err => console.log(err));
 

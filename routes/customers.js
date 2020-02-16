@@ -49,7 +49,7 @@ res.redirect(`/customers/${customer.id}`)
   }  
 })
 
-
+//show
 router.get('/:id', async (req, res) => {
   try {
     const customer = await Customer.findById(req.params.id)
@@ -58,7 +58,8 @@ router.get('/:id', async (req, res) => {
       customer: customer,
       productsByCustomer: product
     })
-  } catch {
+  } catch (err){
+    console.log(err)
     res.redirect('/')
   }
 })
@@ -68,16 +69,17 @@ router.get('/:id/edit',async (req, res) => {
   try
   {
     const customer=await Customer.findById(req.params.id)
-    res.render('customers/edit',{customer: new Customer()})
+    res.render('customers/edit',{customer: customer})
  
   }
   catch
+  (err)
   {
+    console.log(err)
 res.redirect('/customers')
   }
 
 })
-
 
 
 router.put('/:id', async (req, res) => {
@@ -87,16 +89,13 @@ router.put('/:id', async (req, res) => {
     customer.name = req.body.name
     await customer.save()
     res.redirect(`/customers/${customer.id}`)
-  } catch (err)
-
-  {
-    console.log(err)
+  } catch {
     if (customer == null) {
       res.redirect('/')
     } else {
       res.render('customers/edit', {
         customer: customer,
-        errorMessage: 'Error updating customer'
+        errorMessage: 'Error updating Author'
       })
     }
   }

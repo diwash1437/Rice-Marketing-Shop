@@ -1,11 +1,32 @@
-<h2><%= customer.name %></h2>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   
+    <link rel="stylesheet" href="stylesheets/main.css">
+</head>
+<body>
+
+
+<h2 class="page-header"><%= customer.name %></h2>
 <a href="/customers/<%= customer.id %>/edit">Edit</a>
 <form method="POST" action="/customers/<%= customer.id %>?_method=DELETE">
     <button type="submit">Delete</button>
   </form>
-<% if (productsByCustomer.length > 0) { %>
-  <h2>Products By Customer</h2>
-  <% productsByCustomer.forEach(book => { %>
-    <img height="150" width="100" src="<%= product.coverImagePath %>">
-  <% }) %>
-<% } %>
+  <% if (productsByCustomer.length > 0) { %>
+    <h2>Products By Customers</h2>
+    <% productsByCustomer.forEach(product => { %>
+      <a href="/products/<%= product.id %>">
+        <img height="150" width="100" src="<%= product.coverImagePath %>">
+      </a>
+    <% }) %>
+  <% } %>
+
+
+  
+
+</body>
+</html>
